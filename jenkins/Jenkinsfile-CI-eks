@@ -1,0 +1,64 @@
+pipeline {
+    agent any
+    environment {
+        AWS_REGION = "us-east-2"
+        ECR_URL = "410244537877.dkr.ecr.us-east-2.amazonaws.com"
+        BUILD_NUMBER = "${env.BUILD_ID}"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/aaftabparmar-DevOps-Eng/CapitalX.git'
+            }
+        }
+        stage('Trivy Security Scan') {
+            steps {
+                sh 'trivy fs --severity HIGH,CRITICAL --no-progress --exit-code 0 . || true'
+            }
+        }
+        stage('Docker Build & Push to ECR') {
+            steps {
+                withAWS(credentials: 'aws-credentials', region: 'us-east-2') {
+                    sh '''
+                        aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_URL}
+                        
+                        ALB=$(kubectl get ingress capitalx-ingress -n capitalx -o jsonpath="{.status.loadBalancer.ingress[0].hostname}" 2>/dev/null || echo "localhost")
+                        
+                        echo "Building with ALB: ${ALB}"
+                        
+                        docker build -t capitalx-backend:${BUILD_NUMBER} ./backend
+                        docker tag capitalx-backend:${BUILD_NUMBER} ${ECR_URL}/capitalx-backend:${BUILD_NUMBER}
+                        docker tag capitalx-backend:${BUILD_NUMBER} ${ECR_URL}/capitalx-backend:latest
+                        docker push ${ECR_URL}/capitalx-backend:${BUILD_NUMBER}
+                        docker push ${ECR_URL}/capitalx-backend:latest
+                        
+                        docker build --build-arg NEXT_PUBLIC_API_URL=http://${ALB}/api/v1 \
+                          -t capitalx-frontend:${BUILD_NUMBER} ./frontend
+                        docker tag capitalx-frontend:${BUILD_NUMBER} ${ECR_URL}/capitalx-frontend:${BUILD_NUMBER}
+                        docker tag capitalx-frontend:${BUILD_NUMBER} ${ECR_URL}/capitalx-frontend:latest
+                        docker push ${ECR_URL}/capitalx-frontend:${BUILD_NUMBER}
+                        docker push ${ECR_URL}/capitalx-frontend:latest
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        success {
+            emailext (
+                subject: "✅ EKS CI SUCCESS - Build #${BUILD_NUMBER}",
+                mimeType: 'text/html',
+                body: '<h3>Images pushed to ECR!</h3>',
+                to: 'aaftabparmar29@gmail.com'
+            )
+        }
+        failure {
+            emailext (
+                subject: "❌ EKS CI FAILED - Build #${BUILD_NUMBER}",
+                mimeType: 'text/html',
+                body: '<h3>Check logs</h3>',
+                to: 'aaftabparmar29@gmail.com'
+            )
+        }
+    }
+}

@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: capitalx-ingress
+  namespace: capitalx
+
+  annotations:
+
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+
+    alb.ingress.kubernetes.io/scheme: internet-facing
+
+    alb.ingress.kubernetes.io/target-type: ip
+
+spec:
+  ingressClassName: alb
+
+  rules:
+
+  - http:
+
+      paths:
+
+      - path: /api
+
+        pathType: Prefix
+
+        backend:
+
+          service:
+
+            name: backend
+
+            port:
+
+              number: 3001
+
+      - path: /
+
+        pathType: Prefix
+
+        backend:
+
+          service:
+
+            name: frontend
+
+            port:
+
+              number: 3000
