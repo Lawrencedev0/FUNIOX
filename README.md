@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 CapitalX — Production Cloud Ecosystem on AWS
 
 <p align="center">
@@ -366,3 +367,6 @@ If you found this project useful, please consider giving it a star.
 🍴 Fork this project
 🚀 Build something amazing
 ```
+=======
+# FUNIOX
+>>>>>>> ef0b5fafb7d8779786b51523a5f7e39e3e0681ba
