@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Lawrencedev0/CapitalX">
-    <img src="https://img.shields.io/badge/GitHub-CapitalX-181717?style=for-the-badge&logo=github">
+  <a href="https://github.com/Lawrencedev0/FUNIOX">
+    <img src="https://img.shields.io/badge/GitHub-FUNIOX-181717?style=for-the-badge&logo=github">
   </a>
   <img src="https://img.shields.io/badge/AWS-EKS-FF9900?style=for-the-badge&logo=amazonaws">
   <img src="https://img.shields.io/badge/Kubernetes-v1.34-326CE5?style=for-the-badge&logo=kubernetes">
