@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# 🚀 CapitalX — Production Cloud Ecosystem on AWS
+# 🚀 FUNIOX — Production Cloud Ecosystem on AWS
 
 <p align="center">
   <img src="./assets/architecture.png" alt="CapitalX Architecture" width="100%">
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/aaftabparmar-DevOps-Eng/CapitalX">
+  <a href="https://github.com/Lawrencedev0/CapitalX">
     <img src="https://img.shields.io/badge/GitHub-CapitalX-181717?style=for-the-badge&logo=github">
   </a>
   <img src="https://img.shields.io/badge/AWS-EKS-FF9900?style=for-the-badge&logo=amazonaws">
@@ -26,7 +26,7 @@
 
 ## 📌 Overview
 
-**CapitalX** is a production-style, cloud-native investment platform built to demonstrate modern DevOps and Platform Engineering practices on AWS.
+**FUNIOX** is a production-style, cloud-native investment platform built to demonstrate modern DevOps and Platform Engineering practices on AWS.
 
 The project implements an end-to-end workflow covering:
 
@@ -210,7 +210,7 @@ Security measures implemented:
 ## 📂 Project Structure
 
 ```bash
-CapitalX
+FUNIOX
 │
 ├── backend/
 │   ├── src/
@@ -274,9 +274,9 @@ CapitalX
 ### Clone Repository
 
 ```bash
-git clone https://github.com/aaftabparmar-DevOps-Eng/CapitalX.git
+git clone https://github.com/Lawrencedev0/FUNIOX.git
 
-cd CapitalX
+cd FUNIOX
 ```
 
 ### Frontend
@@ -312,19 +312,19 @@ kubectl apply -f k8s/
 ### Verify Pods
 
 ```bash
-kubectl get pods -n capitalx
+kubectl get pods -n FUNIOX
 ```
 
 ### Verify Services
 
 ```bash
-kubectl get svc -n capitalx
+kubectl get svc -n FUNIOX
 ```
 
 ### Verify Ingress
 
 ```bash
-kubectl get ingress -n capitalx
+kubectl get ingress -n FUNIOX
 ```
 
 ---
@@ -354,7 +354,7 @@ DevOps & Cloud Engineer
 
 🔗 GitHub:
 
-https://github.com/aaftabparmar-DevOps-Eng
+https://github.com/Lawrencedev0
 
 ---
 
