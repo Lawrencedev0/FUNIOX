@@ -2,7 +2,7 @@
 # 🚀 FUNIOX — Production Cloud Ecosystem on AWS
 
 <p align="center">
-  <img src="./assets/architecture.png" alt="CapitalX Architecture" width="100%">
+  <img src="./assets/architecture.png" alt="FUNIOX Architecture" width="100%">
 </p>
 
 <p align="center">
